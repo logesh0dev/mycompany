@@ -1,0 +1,136 @@
+<div class="wholediv ">
+    <div class="searchbardiv" class="shadow p-4 m-2 w-100 bg-white rounded">
+        <h1>Employee Form</h1>
+        <div>
+            <form [formGroup]="employeeform" id="employeeform" >
+                <div class="row col-md-12">
+
+
+                    <div class="col-md-4">
+                        <mat-form-field class="w-100">
+                            <mat-label>Name</mat-label>
+
+                            <input required type="text" matInput autocomplete="off" formControlName="name"
+                              >
+
+                            <mat-error
+                                *ngIf="employeeform.get('name').invalid && (employeeform.get('name').dirty || employeeform.get('name').touched ) && employeeform.get('name').errors?.required">Name
+                                can't be blank </mat-error>
+                            <mat-error
+                                *ngIf="employeeform.get('name').invalid && (employeeform.get('name').dirty || employeeform.get('name').touched ) && employeeform.get('name').errors?.maxlength">Name
+                                should contains within 15 characters </mat-error>
+
+
+                        </mat-form-field>
+
+                        <!-- <mat-label>Employee Name</mat-label><br>
+                                    <mat-form-field appearance="outline" class="w-100" style="width: 250px;"
+                                        (click)="ShiftMappingEmployeeget('')">
+                                        <input matInput placeholder="Select"
+                                            [matAutocomplete]="shift"
+                                            (keyup)="ShiftMappingEmployeeget(EmployeeSummarySearch.value.codename)"
+                                            formControlName="codename" autocomplete="off">
+                                        <mat-autocomplete #shift="matAutocomplete" [displayWith]="displayShiftmapping">
+                                            <mat-option *ngFor="let employee of employeesearchdata" [value]="employee">
+                                                {{employee.full_name}}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field> -->
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="w-100">
+                            <mat-label>Age</mat-label>
+
+                            <input required type="number" matInput autocomplete="off" formControlName="age" [min]="18" [max]="100"
+                                [ngClass]="{
+                                'is-invalid': employeeform.get('age').invalid && (employeeform.get('age').dirty || employeeform.get('age').touched ),
+                                'is-valid': employeeform.get('age').valid && (employeeform.get('age').dirty || employeeform.get('age').touched ) }">
+
+                            <mat-error
+                                *ngIf="employeeform.get('age').invalid && (employeeform.get('age').dirty || employeeform.get('age').touched ) && employeeform.get('age').errors?.required">Age
+                                can't be blank </mat-error>
+                            <mat-error
+                                *ngIf="employeeform.get('age').invalid && (employeeform.get('age').dirty || employeeform.get('age').touched ) && employeeform.get('age').errors?.pattern">Age
+                                should be greater than 18
+                            </mat-error>
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="w-100">
+                            <mat-label>Gender</mat-label>
+
+                            <mat-select required formControlName="gender"   >
+                                <mat-option *ngFor="let gen of genderdata;let i=index" [value]="gen.name"  >{{gen.name}}</mat-option>
+                            </mat-select>
+
+                            <mat-error
+                                *ngIf="employeeform.get('gender').invalid && (employeeform.get('gender').dirty || employeeform.get('gender').touched ) && employeeform.get('gender').errors?.required">
+                                Please select Gender </mat-error>
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="w-100">
+                            <mat-label>Mobile No</mat-label>
+
+                            <input required type="number" matInput autocomplete="off" formControlName="phno">
+
+                            <mat-error
+                            *ngIf="employeeform.get('phno').invalid && (employeeform.get('phno').dirty || employeeform.get('phno').touched ) && employeeform.get('phno').errors?.required">Mobile
+                            can't be blank </mat-error>
+                        <mat-error
+                            *ngIf="employeeform.get('phno').invalid && (employeeform.get('phno').dirty || employeeform.get('phno').touched ) && employeeform.get('phno').errors?.pattern">Mobile
+                            number should be correct format
+                        </mat-error>
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="w-100">
+                            <mat-label>Mail</mat-label>
+
+                            <input required type="text" matInput autocomplete="off" formControlName="mail"  >
+
+                            <mat-error
+                            *ngIf="employeeform.get('mail').invalid && (employeeform.get('mail').dirty || employeeform.get('mail').touched ) && employeeform.get('mail').errors?.required">Mail
+                            can't be blank </mat-error>
+                        <mat-error
+                            *ngIf="employeeform.get('mail').invalid && (employeeform.get('mail').dirty || employeeform.get('mail').touched ) && employeeform.get('mail').errors?.pattern">Mail
+                             should be in correct format
+                        </mat-error>
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-5 ">
+                        <mat-form-field class="w-100">
+                            <mat-label>Address</mat-label>
+
+                            <input required type="text" matInput autocomplete="off" formControlName="address">
+                            <mat-error
+                            *ngIf="employeeform.get('address').invalid && (employeeform.get('address').dirty || employeeform.get('address').touched ) && employeeform.get('address').errors?.required">
+                            Please fill Address </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+                <div>
+                    <div class="col-md-4 mt-3 ">
+                        <div>
+                            <button type="button" class="btn btn-light" [routerLink]='"/atma/vendor"' skipLocationChange
+                                style="border-radius: 7px;margin-left: 10px;
+                            border-color: black;
+                            background-color: white;" (click)="cancel()" >Cancel</button>
+                            <button type="submit" style="border-radius: 10px;margin-left: 10px;
+                        border-color: #f5c68b;
+                        background-color: #f5c68b;" (click)="submitForm()" [disabled]="employeeform.invalid"  class="btn btn-light">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- <pre>
+        {{employeeform.value | json}}
+    </pre> -->
+</div>

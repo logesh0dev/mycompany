@@ -1,0 +1,3 @@
+<input type="text" [(ngModel)]="inputdata" [value]="inputdata">
+<p>Parent component {{inputdata}}</p>
+<app-about [inputstring]="inputdata" (cancelinput)="clearinput()" ></app-about>
