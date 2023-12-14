@@ -163,6 +163,15 @@ footer {
 
   .servicesdiv{
     flex-wrap: wrap;
+    text-align: center;
+    
   }
 
+  section{
+    height: auto;
+  }
+  h1,h2,h3{
+    text-align: center;
+
+  }
 }

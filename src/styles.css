@@ -6,7 +6,7 @@ body {
     width: 100%;
     height: 100%;
     background-size: cover;
-    background: url('/assets/backgroundimg1.jpg') no-repeat center center fixed;
+    background: url('./backgroundimg1.jpg') no-repeat center center fixed;
 }
 
 body {
